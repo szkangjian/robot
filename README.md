@@ -1,36 +1,36 @@
-# Robot ETF Notes
+# 机器人 ETF 研究笔记
 
-This repository tracks research notes on U.S.-listed ETFs focused on robotics, automation, and adjacent AI themes.
+这个仓库用于整理美国上市机器人、自动化及相关 AI 主题 ETF 的研究记录。
 
-## Current Contents
+## 当前内容
 
 - [robot_etf_notes_2026-03-29.md](./robot_etf_notes_2026-03-29.md)
-  - Screening of major AI/robotics ETFs
-  - Why `AIQ` is less attractive when `QQQ` is already a large position
-  - Methodology differences between `AIQ`, `BOTZ`, and `ROBO`
-  - Quantitative comparison of `BOTZ` vs `ROBO`
-  - Suggested `BOTZ/ROBO` allocation when `QQQ + SPY` already make up 60% of the equity portfolio
+  - 主要 AI/机器人 ETF 的初步筛选
+  - 为什么在已经重仓 `QQQ` 的前提下，`AIQ` 吸引力会下降
+  - `AIQ`、`BOTZ`、`ROBO` 的方法论差异
+  - `BOTZ` 与 `ROBO` 的定量对比
+  - 在 `QQQ + SPY` 已占股票仓 `60%` 时，`BOTZ/ROBO` 的建议配置思路
 
-## Working Conclusion
+## 当前结论
 
-The current notes lean toward:
+现阶段的判断偏向于：
 
-- treating `ROBO` as the better long-term robotics industry basket
-- using `BOTZ` as a more concentrated add-on for robotics leaders
-- avoiding over-allocating to `AIQ` when the portfolio already has heavy `QQQ` exposure
+- 把 `ROBO` 视为更适合长期持有的机器人产业篮子
+- 把 `BOTZ` 视为更偏龙头集中的补充仓位
+- 在已经重仓 `QQQ` 的前提下，不再把 `AIQ` 作为主要增配方向
 
-For a portfolio where `QQQ + SPY` already account for 60% of equities, the working default from the notes is:
+如果 `QQQ + SPY` 已经占股票仓 `60%`，当前讨论得到的默认思路是：
 
-- `BOTZ + ROBO` total allocation around `6% to 8%`
-- internal split around `ROBO 70% / BOTZ 30%`
+- `BOTZ + ROBO` 合计先放在股票仓的 `6% 到 8%`
+- 内部大致按 `ROBO 70% / BOTZ 30%` 分配
 
-## Scope
+## 使用范围
 
-These notes are meant as a decision framework, not as real-time trading instructions. Some figures in the research memo were collected from official fund pages and third-party ETF data pages on different dates, so they should be refreshed before execution.
+这份仓库更适合作为研究与决策框架，而不是直接的实时交易指令。研究笔记中的部分数据来自不同日期的基金官网和第三方 ETF 数据页，因此在实际执行前，仍然需要重新核对最新数据。
 
-## Next Possible Additions
+## 后续可补充内容
 
-- latest top-10 holdings snapshots for `BOTZ` and `ROBO`
-- overlap tracking versus `QQQ` and `SPY`
-- historical drawdown and volatility comparison
-- a reusable portfolio sizing template
+- `BOTZ` 与 `ROBO` 最新前十大持仓跟踪
+- 相对于 `QQQ` 和 `SPY` 的持仓重叠变化
+- 历史回撤、波动率与收益对比
+- 可复用的组合仓位模板
