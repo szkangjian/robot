@@ -277,27 +277,60 @@ ETFRC 近期开照显示：
 - `持仓重叠`：你是否买到了很多重复公司
 - `价格联动`：即使持仓不同，价格走势也可能仍然高度同步
 
-目前这部分可以分成两种口径：
+本次已经可以补出一张更完整的统一矩阵。  
+下面这张表使用 ETFRC 在 `2026-04-03` 抓到的同源 overlap snapshot：
 
-- `QQQ`：沿用 ETFRC 的 overlap 快照
-- `SPY`：用 `SPY` 官方 `504` 只全持仓，去匹配 `BOTZ/ROBO` 当前前 `25` 大持仓，得到一个更硬的“重叠下限”
+| 重叠矩阵 | QQQ | SPY | BOTZ | ROBO |
+|---|---:|---:|---:|---:|
+| `QQQ` | — | `50%` | `14%` | `5%` |
+| `SPY` | `50%` | — | `12%` | `4%` |
+| `BOTZ` | `14%` | `12%` | — | `23%` |
+| `ROBO` | `5%` | `4%` | `23%` | — |
 
-这里特别强调“下限”两个字：  
-因为 `BOTZ/ROBO` 这一边我拿到的是当前前 `25` 大持仓，而不是全部 `64/90` 只持仓，所以算出来的是至少重叠多少，不是理论上的最终精确值。
+这张矩阵下面还有一层信息，即重叠来自多少只共同持仓：
 
-| 对比对象 | BOTZ | ROBO | 怎么读 |
-|---|---:|---:|---|
-| 与 `QQQ` 的持仓重叠快照 | 约 `11%` | 约 `5%` | `ROBO` 与已有 `QQQ` 的重复更低 |
-| 与 `SPY` 的持仓重叠下限 | `>= 11.89%` | `>= 0.61%` | 口径是 `SPY` 全持仓 vs `BOTZ/ROBO` 前25大持仓 |
-| 与 `QQQ` 的 1Y 价格相关性 | `0.78` | `0.79` | 两者价格上都还会受科技风险偏好影响 |
-| 与 `SPY` 的 1Y 价格相关性 | `0.79` | `0.79` | 两者都仍然是明显的权益 beta，不会脱离大盘 |
-| 与 `SPY` 的主要重叠来源 | `NVDA`、`GOOGL`、`TSLA`、`ISRG` | `ISRG`、`EMR`、`TER`、`ROK`、`NDSN` | `BOTZ` 是少数大权重共振，`ROBO` 是更多小权重共振 |
+| 共同持仓数矩阵 | QQQ | SPY | BOTZ | ROBO |
+|---|---:|---:|---:|---:|
+| `QQQ` | — | `88` | `4` | `7` |
+| `SPY` | `88` | — | `4` | `15` |
+| `BOTZ` | `4` | `4` | — | `20` |
+| `ROBO` | `7` | `15` | `20` | — |
+
+如果把这两张表翻成投资语言，最重要的顺序就是：
+
+- `QQQ` 和 `SPY` 的重叠最高，达到 `50%`
+- `BOTZ` 和 `ROBO` 的内部重叠也不低，达到 `23%`
+- `BOTZ` 对核心仓的重叠，已经明显高于 `ROBO`
+- `ROBO` 是这四只里与 `QQQ/SPY` 最不拥挤的机器人主题工具
+
+换句话说：
+
+- 已经重仓 `QQQ + SPY` 的人，如果再买 `BOTZ`，会明显增加与核心仓的重复
+- 同样前提下，`ROBO` 虽然不是完全独立，但边际新增暴露要“新”得多
+- `BOTZ + ROBO` 一起买是有意义的，但真正承担机器人主仓角色的更应该是 `ROBO`
+
+为了校验这个矩阵，我还另外做了一套“当前公开持仓快照交叉实算”的下限估算：
+
+| 交叉实算下限 | 结果 | 说明 |
+|---|---:|---|
+| `QQQ-SPY` | `>= 43.40%` | 用 `QQQ` 当前前25大持仓对 `SPY` 全持仓 |
+| `QQQ-BOTZ` | `>= 12.28%` | 主要来自 `NVDA`、`GOOGL`、`TSLA` |
+| `QQQ-ROBO` | `>= 0.00%` | 前25大持仓里没有直接重叠，但 ETFRC 全口径快照是 `5%` |
+| `SPY-BOTZ` | `>= 11.89%` | 与 ETFRC 的 `12%` 几乎一致 |
+| `SPY-ROBO` | `>= 0.61%` | 低估明显，说明 `ROBO` 的重叠更多分散在小权重持仓里 |
+| `BOTZ-ROBO` | `>= 5.02%` | 低估明显，说明两者的共同暴露不只集中在前十大/前二十五大 |
+
+这组交叉实算的意义在于：
+
+- `BOTZ` 与 `SPY` 的重叠并不是错觉，下限实算几乎就已经贴近 ETFRC 全口径值。
+- `ROBO` 与 `SPY/QQQ` 的重叠，更多是分散在很多小权重名字里，所以如果只看前25大持仓，会低估它的真实 overlap。
+- `BOTZ` 与 `QQQ/SPY` 的重叠，更多是被少数高权重 mega-cap 直接拉出来的，这也是它更“挤”的根本原因。
 
 这张表最重要的意思不是“谁和大盘完全无关”，而是：
 
 - 如果你的核心仓已经偏 `QQQ`，新增机器人暴露时，`ROBO` 的边际分散价值更高。
 - `BOTZ` 和 `QQQ` 的持仓重复虽然没有 `AIQ` 那么高，但仍然明显高于 `ROBO`。
-- `BOTZ` 与 `SPY` 的重叠下限已经接近 `12%`，而且几乎都集中在少数高权重大票上，这意味着它和美股核心仓的共振会更明显。
+- `BOTZ` 与 `SPY` 的重叠已经被 ETFRC 快照和下限实算双重验证，确实不低。
 - `ROBO` 虽然与 `QQQ` 的持仓重复更低，但和 `SPY`、`QQQ` 的价格联动依然偏高，这提醒我们：主题 ETF 的“风格分散”不等于“风险分散”。
 
 把 `SPY` 这部分再拆成具体名字，会更直观：
@@ -367,6 +400,16 @@ ETFRC 近期开照显示：
   <https://www.etfrc.com/funds/overlap.php?f1=BOTZ>  
   <https://www.etfrc.com/funds/overlap.php?f1=ROBO>  
   <https://www.etfrc.com/funds/overlap.php?f1=BOTZ&f2=ROBO>
+- QQQ vs SPY overlap（ETFRC）  
+  <https://www.etfrc.com/funds/overlap.php?f1=QQQ&f2=SPY>
+- QQQ vs BOTZ overlap（ETFRC）  
+  <https://www.etfrc.com/funds/overlap.php?f1=QQQ&f2=BOTZ>
+- QQQ vs ROBO overlap（ETFRC）  
+  <https://www.etfrc.com/funds/overlap.php?f1=QQQ&f2=ROBO>
+- SPY vs BOTZ overlap（ETFRC）  
+  <https://www.etfrc.com/funds/overlap.php?f1=SPY&f2=BOTZ>
+- SPY vs ROBO overlap（ETFRC）  
+  <https://www.etfrc.com/funds/overlap.php?f1=SPY&f2=ROBO>
 - BOTZ vs ROBO PortfoliosLab  
   <https://portfolioslab.com/tools/stock-comparison/BOTZ/ROBO>
 - BOTZ vs QQQ PortfoliosLab  
@@ -392,5 +435,5 @@ ETFRC 近期开照显示：
 
 - 文中部分规模、成交量、重叠度来自不同时间点的网页快照，适合做决策框架，不适合替代下单前的最终核对。
 - 本次已经补入 `BOTZ/ROBO` 最新前十大持仓、相对 `QQQ/SPY` 的重叠与联动、以及历史收益/回撤/波动率对比。
-- 文中 `QQQ` 的持仓重叠使用了 ETFRC 的 indexed snapshot；`SPY` 这一边本次进一步升级为“`SPY` 全持仓 × `BOTZ/ROBO` 前25大持仓”的下限实算。
-- 这意味着：`BOTZ` 对 `SPY` 的重叠判断已经相当扎实；`ROBO` 对 `SPY` 的 `0.61%` 则应理解为保守下限，真实全持仓重叠大概率会略高一些。
+- 文中四基金统一矩阵使用的是 ETFRC 在 `2026-04-03` 可见的 overlap snapshot。
+- 下限实算部分是用公开持仓快照做的交叉验证，用来帮助理解“重叠是集中在少数大票，还是分散在很多小票里”。
